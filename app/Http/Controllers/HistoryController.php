@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\HistoryAllExport;
 use App\Models\History;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HistoryController extends Controller
 {
@@ -58,6 +60,11 @@ class HistoryController extends Controller
     {
         $item = History::find($id)->delete();
         return response()->json(['status' => true , 'data' => 'delete']);
+    }
+
+    public function export()
+    {
+        return Excel::download(new HistoryAllExport, 'History.xlsx');
     }
     //
 }

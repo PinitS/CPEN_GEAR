@@ -272,51 +272,7 @@
         $('.gear-modal-reset-password').modal('show');
     });
 
-    $(document).off('click', '.pnt-btn-modal-reset-password-save').on('click', '.pnt-btn-modal-reset-password-save', (e) => {
-        console.log($('.gear-reset-password').val())
-        console.log($('.gear-reset-password_confirmation').val())
-        console.log(window.id)
-        if($('.gear-reset-password').val() == $('.gear-reset-password_confirmation').val())
-        {
-            $.ajax({
-                type: "post",
-                url: "{!! url('user/resetPassword') !!}/" + window.id,
-                data: {
-                    password: $('.gear-reset-password').val(),
-                    '_token': window.token,
-                },
-                beforeSend: function () {
-                    $('#pnt-loading').show();
-                },
-                success: function (data) {
-                    console.log(data)
-                    if (data.status == "only")
-                    {
-                        sweetAlert('success' , 'Please Login..')
-                        location.reload();
-                    }
-                    else if (data.status == "other") {
-                        sweetAlert('success' , 'Reset Password Success fully')
-                    }
-                    else{
-                        sweetAlert('error' , 'Something went wrong!')
-                    }
-                    $('.gear-modal-reset-password').modal('hide');
-                    $('#pnt-loading').hide();
-                },
-                error: function (jqXHR, exception) {
-                    if (jqXHR.status !== 200) {
-                        $('#pnt-loading').hide();
-                        sweetAlert('error' , 'Something went wrong!')
-                    }
-                },
-            });
-        }
-        else
-        {
-            sweetAlert('error' , 'Password and confirmation do not match')
-        }
-    });
+
 
 
     $(document).off('click', '.gear-btn-delete').on('click', '.gear-btn-delete', (e) => {

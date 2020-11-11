@@ -58,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('create', [HistoryController::class, 'create']);
         Route::post('update/{id}', [HistoryController::class, 'update']);
         Route::get('delete/{id}', [HistoryController::class, 'delete']);
+        Route::get('export', [HistoryController::class, 'export']);
     });
 
     Route::prefix('dashboard')->group(function () {

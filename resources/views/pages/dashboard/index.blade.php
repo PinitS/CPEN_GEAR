@@ -264,6 +264,14 @@
             });
         }
 
+        // window.location.href = "http://stackoverflow.com";
+
+        // gear-export
+
+        $(document).off('click', '.gear-export').on('click', '.gear-export', (e) => {
+            window.location.href = "{!! url('/income/export') !!}";
+        });
+
 </script>
 
 
